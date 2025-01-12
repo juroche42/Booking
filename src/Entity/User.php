@@ -8,7 +8,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
-class User implements UserInterface
+class User implements UserInterface, \Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -23,6 +23,8 @@ class User implements UserInterface
 
     #[ORM\Column(length: 255)]
     private ?string $password = null;
+
+    public ?string $plainPassword = '';
 
     #[ORM\Column]
     private array $roles = [];
@@ -68,6 +70,18 @@ class User implements UserInterface
         return $this;
     }
 
+    public function getPlainPassword(): string
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword(string $plainPassword): static
+    {
+        $this->plainPassword = $plainPassword;
+
+        return $this;
+    }
+
     public function getRoles(): array
     {
         return $this->roles;
@@ -75,7 +89,7 @@ class User implements UserInterface
 
     public function eraseCredentials(): void
     {
-        // TODO: Implement eraseCredentials() method.
+        $this->plainPassword = '';
     }
 
     public function getUserIdentifier(): string
