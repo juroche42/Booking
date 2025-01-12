@@ -20,6 +20,7 @@
 </style>
 
 <div class="menu-bar">
+    <a href="/"><button>home</button></a>
     {% if is_granted('ROLE_ADMIN') %}
         <button>admin</button>
     {% endif %}
