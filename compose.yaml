@@ -8,10 +8,17 @@ services:
     environment:
       POSTGRES_DB: booking
       POSTGRES_USER: root
-      POSTGRES_PASSWORD: 'root'
+      POSTGRES_PASSWORD: root
       DATABASE_URL: $DATABASE_URL
     volumes:
       - database_data:/var/lib/postgresql/data:rw
+
+  adminer:
+    image: adminer
+    environment:
+      ADMINER_DEFAULT_SERVER: database
+    ports:
+      - "8080:8080"
 
 volumes:
   database_data:
