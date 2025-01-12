@@ -23,5 +23,6 @@
     {% if is_granted('ROLE_ADMIN') %}
         <button>admin</button>
     {% endif %}
+        <a href="/profil"><button>profil</button></a>
         <a href="{{ path('app_logout') }}"><button>logout</button></a>
 </div>
