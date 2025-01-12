@@ -17,4 +17,10 @@ class GenreContollerController extends AbstractController
             'books' => $genre->getBooks()
         ]);
     }
+
+    #[Route('/genre', name: 'app_genre')]
+    public function genre(): Response
+    {
+        return $this->render('genre_contoller/genre.html.twig');
+    }
 }
