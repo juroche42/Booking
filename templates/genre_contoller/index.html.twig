@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello GenreContollerController!{% endblock %}
+{% block title %}Hello GenreController!{% endblock %}
 
 {% block body %}
 <style>
@@ -13,8 +13,13 @@
     <h1>{{ genre.name }}</h1>
 
     <ul>
-        <li>Your controller at <code>/Users/jules/Sites/booking/src/Controller/GenreContollerController.php</code></li>
-        <li>Your template at <code>/Users/jules/Sites/booking/templates/genre_contoller/index.html.twig</code></li>
+        {% for book in books %}
+            <li>
+                <a href="/book/{{ book.id }}">
+                    {{ book.title }}
+                </a>
+            </li>
+        {% endfor %}
     </ul>
     <a href="/"><button>Retour</button></a>
 </div>
