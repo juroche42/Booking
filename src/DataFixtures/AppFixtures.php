@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Genre;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -11,6 +12,7 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $this->loadUSer($manager);
+        $this->loadGenre($manager);
 
         $manager->flush();
     }
@@ -46,5 +48,55 @@ class AppFixtures extends Fixture
             $manager->persist($user);
         }
 
+    }
+
+    private function loadGenre(ObjectManager $manager): void
+    {
+        $genres = [
+            'genre1' => [
+                'name' => 'Action'
+            ],
+            'genre2' => [
+                'name' => 'Adventure'
+            ],
+            'genre3' => [
+                'name' => 'Comedy'
+            ],
+            'genre4' => [
+                'name' => 'Crime'
+            ],
+            'genre5' => [
+                'name' => 'Drama'
+            ],
+            'genre6' => [
+                'name' => 'Fantasy'
+            ],
+            'genre7' => [
+                'name' => 'Historical'
+            ],
+            'genre8' => [
+                'name' => 'Horror'
+            ],
+            'genre9' => [
+                'name' => 'Mystery'
+            ],
+            'genre10' => [
+                'name' => 'Romance'
+            ],
+            'genre11' => [
+                'name' => 'Science Fiction'
+            ],
+            'genre12' => [
+                'name' => 'Thriller'
+            ],
+            'genre13' => [
+                'name' => 'Western'
+            ],
+        ];
+        foreach ($genres as $genreData) {
+            $genre = new Genre();
+            $genre->setName($genreData['name']);
+            $manager->persist($genre);
+        }
     }
 }
