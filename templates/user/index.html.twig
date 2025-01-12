@@ -10,13 +10,13 @@
 
 <div class="example-wrapper">
     {% include 'menu.html.twig' %}
-    <h1>Hello {{ user.username }}! </h1>
+        <h1>Hello {{ user.username }}! </h1>
 
-    <ul>
-        <li>{{ user.username }}</li>
-        <li>{{ user.email }}</li>
-        <li>{{ user.roles }}</li>
-    </ul>
+        <ul>
+            <li>{{ user.username }}</li>
+            <li>{{ user.email }}</li>
+            <li>{{ user.roles[0] }}</li>
+        </ul>
     <a href="/"><button>Retour</button></a>
 </div>
 {% endblock %}
