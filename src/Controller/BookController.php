@@ -14,9 +14,11 @@ class BookController extends AbstractController
     public function index(Book $book, AuthorRepository $authorRepository): Response
     {
         $author = $book->getAuthor();
+        $genres = $book->getGenre();
         return $this->render('book/index.html.twig', [
             'book' => $book,
-            'author' => $author
+            'author' => $author,
+            'genres' => $genres
         ]);
     }
 }
