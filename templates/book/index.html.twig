@@ -13,7 +13,11 @@
     <h1>{{ book.title }}</h1>
     <ul>
         <li>{{ book.title }}</li>
-        <li>{{ author.firstname }} {{ author.lastname }}</li>
+        <li>
+            <a href="/author/{{ author.id }}">
+                {{ author.firstname }} {{ author.lastname }}
+            </a>
+        </li>
         <li>Genre : </li>
         {% for genre in genres %}
             <ul>
