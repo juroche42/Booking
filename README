@@ -1,0 +1,29 @@
+- Docker
+- Composer
+- PHP
+
+## Installation
+
+1. Init the project
+```bash
+composer install
+```
+
+2. Run the project
+```bash
+docker-compose up
+```
+in another terminal
+```bash
+symfony serve
+```
+
+3. Load the fixtures
+```bash
+symfony console doctrine:fixtures:load
+```
+
+4. Open the project
+```bash
+http://localhost:8000
+```
