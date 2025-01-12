@@ -9,11 +9,13 @@
 </style>
 
 <div class="example-wrapper">
+    {% include 'menu.html.twig' %}
     <h1>{{ genre.name }}</h1>
 
     <ul>
         <li>Your controller at <code>/Users/jules/Sites/booking/src/Controller/GenreContollerController.php</code></li>
         <li>Your template at <code>/Users/jules/Sites/booking/templates/genre_contoller/index.html.twig</code></li>
     </ul>
+    <a href="/"><button>Retour</button></a>
 </div>
 {% endblock %}
