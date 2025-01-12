@@ -15,10 +15,19 @@ class HomeController extends AbstractController
         if ($this->getUser() === null) {
             return $this->redirectToRoute('app_login');
         }
+        if ($this->isGranted('ROLE_BANNED')) {
+            return $this->redirectToRoute('app_banned');
+        }
         $users = $userRepository->findAll();
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'users' => $users
         ]);
+    }
+
+    #[Route('/banned', name: 'app_banned')]
+    public function banned(): Response
+    {
+        return $this->render('home/banned.html.twig');
     }
 }
