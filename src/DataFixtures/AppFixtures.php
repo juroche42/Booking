@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Author;
 use App\Entity\Book;
 use App\Entity\Genre;
 use App\Entity\User;
@@ -14,6 +15,7 @@ class AppFixtures extends Fixture
     {
         $this->loadUSer($manager);
         $this->loadGenre($manager);
+        $this->loadAuthor($manager);
         $manager->flush();
         $this->loadBook($manager);
 
@@ -108,51 +110,61 @@ class AppFixtures extends Fixture
         $books = [
             'book1' => [
                 'title' => 'The Hobbit',
+                'author' => 'Tolkien',
                 'released_at' => new \DateTime('1937-09-21'),
                 'genres' => ['Fantasy', 'Adventure']
             ],
             'book2' => [
                 'title' => 'The Lord of the Rings',
+                'author' => 'Tolkien',
                 'released_at' => new \DateTime('1954-07-29'),
                 'genres' => ['Fantasy', 'Adventure']
             ],
             'book3' => [
                 'title' => 'Harry Potter and the Philosopher\'s Stone',
+                'author' => 'Rowling',
                 'released_at' => new \DateTime('1997-06-26'),
                 'genres' => ['Fantasy']
             ],
             'book4' => [
                 'title' => 'Harry Potter and the Chamber of Secrets',
+                'author' => 'Rowling',
                 'released_at' => new \DateTime('1998-07-02'),
                 'genres' => ['Fantasy']
             ],
             'book5' => [
                 'title' => 'Harry Potter and the Prisoner of Azkaban',
+                'author' => 'Rowling',
                 'released_at' => new \DateTime('1999-07-08'),
                 'genres' => ['Fantasy']
             ],
             'book6' => [
                 'title' => 'Harry Potter and the Goblet of Fire',
+                'author' => 'Rowling',
                 'released_at' => new \DateTime('2000-07-08'),
                 'genres' => ['Fantasy']
             ],
             'book7' => [
                 'title' => 'Harry Potter and the Order of the Phoenix',
+                'author' => 'Rowling',
                 'released_at' => new \DateTime('2003-06-21'),
                 'genres' => ['Fantasy']
             ],
             'book8' => [
                 'title' => 'Harry Potter and the Half-Blood Prince',
+                'author' => 'Rowling',
                 'released_at' => new \DateTime('2005-07-16'),
                 'genres' => ['Fantasy']
             ],
             'book9' => [
                 'title' => 'Harry Potter and the Deathly Hallows',
+                'author' => 'Rowling',
                 'released_at' => new \DateTime('2007-07-21'),
                 'genres' => ['Fantasy']
             ],
             'book10' => [
                 'title' => 'The Da Vinci Code',
+                'author' => 'Brown',
                 'released_at' => new \DateTime('2003-03-18'),
                 'genres' => ['Mystery', 'Thriller']
             ]
@@ -165,7 +177,34 @@ class AppFixtures extends Fixture
                 $genre = $manager->getRepository(Genre::class)->findOneBy(['name' => $genreName]);
                 $book->addGenre($genre);
             }
+            $author = $manager->getRepository(Author::class)->findOneBy(['lastname' => $bookData['author']]);
+            $book->setAuthor($author);
             $manager->persist($book);
         }
+    }
+
+    public function loadAuthor(ObjectManager $manager): void
+    {
+        $authors = [
+            'author1' => [
+                'firstname' => 'J.R.R.',
+                'lastname' => 'Tolkien',
+            ],
+            'author2' => [
+                'firstname' => 'J.K.',
+                'lastname' => 'Rowling',
+            ],
+            'author3' => [
+                'firstname' => 'Dan',
+                'lastname' => 'Brown',
+            ]
+        ];
+        foreach ($authors as $authorData) {
+            $author = new Author();
+            $author->setFirstname($authorData['firstname']);
+            $author->setLastname($authorData['lastname']);
+            $manager->persist($author);
+        }
+
     }
 }
