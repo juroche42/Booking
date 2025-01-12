@@ -10,12 +10,13 @@
 
 <div class="example-wrapper">
     {% include 'menu.html.twig' %}
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
     <ul>
-        {% for user in users %}
-            <li>{{ user.username }}</li>
+        {% for genre in genres %}
+            <li>
+                <a href="/genre/{{ genre.id }}">
+                    {{ genre.name }}
+                </a>
+            </li>
         {% endfor %}
     </ul>
 </div>
