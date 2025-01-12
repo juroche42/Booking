@@ -22,7 +22,7 @@
 <div class="menu-bar">
     <a href="/"><button>home</button></a>
     {% if is_granted('ROLE_ADMIN') %}
-        <button>admin</button>
+        <a href="/admin"><button>admin</button></a>
     {% endif %}
         <a href="/profil/{{ app.user.id }}"><button>profil</button></a>
         <a href="{{ path('app_logout') }}"><button>logout</button></a>

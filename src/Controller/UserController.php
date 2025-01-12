@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Repository\GenreRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -16,4 +17,14 @@ class UserController extends AbstractController
             'user' => $user
         ]);
     }
+
+    #[Route('/admin', name: 'app_user_edit')]
+    public function admin(GenreRepository $genreRepository): Response
+    {
+        $genres = $genreRepository->findAll();
+        return $this->render('user/admin.html.twig', [
+            'genres' => $genres
+        ]);
+    }
+
 }
