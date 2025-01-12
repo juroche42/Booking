@@ -20,10 +20,8 @@ class HomeController extends AbstractController
             return $this->redirectToRoute('app_banned');
         }
 
-        $users = $userRepository->findAll();
         $genres = $genreRepository->findAll();
         return $this->render('home/index.html.twig', [
-            'users' => $users,
             'genres' => $genres
         ]);
     }
